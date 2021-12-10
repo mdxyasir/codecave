@@ -28,6 +28,12 @@ module.exports = {
             const command = client.commands.get(interaction.commandName);
     
             if (!command) return;
+
+            if (command.role) {
+                if (!interaction.member.roles.cache.some(role => role.name === command.role)) {
+                    return interaction.reply({ content: "You need the " + command.role + " role to use this command", ephemeral: true })
+                }
+            }
     
             try {
                 await command.execute(interaction);

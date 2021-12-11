@@ -30,7 +30,7 @@ module.exports = {
         const description = interaction.options.getString('description');
         const budget = interaction.options.getInteger('budget');
 
-        var channel = interaction.guild.channels.cache.find(channel => channel.id === '919270455305719818');
+        var channel = interaction.guild.channels.cache.find(channel => channel.id === '918964155040530582');
 
         const embed = new MessageEmbed()
 
@@ -64,7 +64,7 @@ module.exports = {
             )
         
         await channel.send({ content: `New request by ${interaction.user}`, embeds: [embed], components: [row] });
-        await interaction.reply({ content: 'Request created and sent in <#919270455305719818>' });
+        await interaction.reply({ content: 'Request created and sent in <#918964155040530582>' });
 
     }
 

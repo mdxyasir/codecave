@@ -17,9 +17,10 @@ module.exports = {
                 .setFooter('To create a new request, use the /request command')
                 
                 .addFields(
-                    { name: 'Description', value: interaction.message.embeds[0].fields[0].value },
-                    { name: 'Budget', value: interaction.message.embeds[0].fields[1].value, inline: true },
-                    { name: 'Submitted by', value: `${interaction.message.embeds[0].fields[2].value}`, inline: true },
+                    { name: '**Description**', value: interaction.message.embeds[0].fields[0].value },
+                    { name: '**Budget**', value: interaction.message.embeds[0].fields[1].value, inline: true },
+                    { name: '**Submitted by**', value: `${interaction.message.embeds[0].fields[2].value}`, inline: true },
+                    { name: '**Status**', value: "Completed", inline: true },
                 )
 
             const row = new MessageActionRow()

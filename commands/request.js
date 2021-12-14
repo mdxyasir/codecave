@@ -34,10 +34,7 @@ module.exports = {
 
         const embed = new MessageEmbed()
 
-            .setDescription(
-                `**Title:** ${title}
-                **Status:** Available`
-            )
+            .setDescription(`**Title:** ${title}`)
 
             .setColor('#35db80')
             .setAuthor(interaction.user.tag, interaction.user.avatarURL())
@@ -45,9 +42,10 @@ module.exports = {
             .setFooter('To create a new request, use the /request command')
 
             .addFields(
-                { name: 'Description', value: description },
-                { name: 'Budget', value: "$" + budget, inline: true },
-                { name: 'Submitted by', value: `${interaction.user}`, inline: true },
+                { name: '**Description**', value: description },
+                { name: '**Budget**', value: "$" + budget, inline: true },
+                { name: '**Submitted by**', value: `${interaction.user}`, inline: true },
+                { name: '**Status**', value: "Available", inline: true },
             )
 
         const row = new MessageActionRow()

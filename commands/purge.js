@@ -5,7 +5,7 @@ module.exports = {
         .setName("purge")
         .setDescription("Purge a number of messages")
 
-        .addStringOption(option => option.setName('number')
+        .addIntegerOption(option => option.setName('number')
             .setDescription('The number of messages to purge')
             .setRequired(true)
         ),
@@ -13,11 +13,11 @@ module.exports = {
     role: 'Staff',
     async execute(interaction) {
             
-            const number = interaction.options.getString('number');
-            const messages = await interaction.channel.messages.fetch({ limit: number + 1 });
+            const number = interaction.options.getInteger('number');
+            const messages = await interaction.channel.messages.fetch({ limit: number });
     
             await interaction.channel.bulkDelete(messages);
-            
+
             await interaction.reply({ content: `Purged ${number} messages`, ephemeral: true });
     
         }

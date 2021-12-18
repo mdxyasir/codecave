@@ -4,7 +4,7 @@ const { MessageEmbed } = require("discord.js")
 module.exports = {
     data: new SlashCommandBuilder()
         .setName("members")
-        .setDescription("View the members of a role")
+        .setDescription("(Staff) View the members of a role")
 
         .addStringOption(option => option.setName('role')
             .setDescription('The role to view')

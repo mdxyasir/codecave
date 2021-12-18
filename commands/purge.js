@@ -3,7 +3,7 @@ const { SlashCommandBuilder } = require("@discordjs/builders")
 module.exports = {
     data: new SlashCommandBuilder()
         .setName("purge")
-        .setDescription("Purge a number of messages")
+        .setDescription("(Staff) Purge a number of messages")
 
         .addIntegerOption(option => option.setName('number')
             .setDescription('The number of messages to purge')

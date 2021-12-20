@@ -5,7 +5,6 @@ const { MessageEmbed, CommandInteraction } = require('discord.js');
 const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js') && file !== 'help.js');
 
 const commandList = []
-const staffCommandList = []
 
 for (const file of commandFiles) {
     const command = require(`./${file}`);
@@ -13,7 +12,7 @@ for (const file of commandFiles) {
     if (command.role == "Staff") { continue }
 
     const commandData = {
-        name: command.data.name[0].toUpperCase() + command.data.name.substring(1),
+        name: "/" + command.data.name,
         description: command.data.description
     }
     

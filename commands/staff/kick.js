@@ -4,7 +4,7 @@ const { MessageEmbed } = require('discord.js');
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('kick')
-        .setDescription('(Staff) Kicks a user from the server')
+        .setDescription('Kicks a user from the server')
         .setDefaultPermission(false)
 
         .addUserOption(option => option.setName('member')

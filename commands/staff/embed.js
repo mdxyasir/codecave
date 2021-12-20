@@ -4,7 +4,7 @@ const { MessageEmbed } = require('discord.js');
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('embed')
-        .setDescription('(Staff) Create an embed')
+        .setDescription('Create an embed')
         .setDefaultPermission(false)
 
         .addStringOption(option => option.setName('title')

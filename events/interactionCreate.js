@@ -9,8 +9,15 @@ client.buttons = new Collection();
 const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
 const buttonFiles = fs.readdirSync('./buttons').filter(file => file.endsWith('.js'));
 
+const staffFiles = fs.readdirSync(`./commands/staff`).filter(file => file.endsWith('.js'));
+
 for (const file of commandFiles) {
 	const command = require(`../commands/${file}`);
+	client.commands.set(command.data.name, command);
+}
+
+for (const file of staffFiles) {
+	const command = require(`../commands/staff/${file}`);
 	client.commands.set(command.data.name, command);
 }
 
@@ -28,12 +35,6 @@ module.exports = {
             const command = client.commands.get(interaction.commandName);
     
             if (!command) return;
-
-            if (command.role) {
-                if (!interaction.member.roles.cache.some(role => role.name === command.role)) {
-                    return interaction.reply({ content: "You need the " + command.role + " role to use this command", ephemeral: true })
-                }
-            }
     
             try {
                 await command.execute(interaction);

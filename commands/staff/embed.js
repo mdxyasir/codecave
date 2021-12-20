@@ -6,7 +6,7 @@ module.exports = {
         .setName('embed')
         .setDescription('(Staff) Create an embed')
         .setDefaultPermission(false)
-        
+
         .addStringOption(option => option.setName('title')
             .setDescription('Title for the embed')
             .setRequired(true))
@@ -14,8 +14,6 @@ module.exports = {
         .addStringOption(option => option.setName('description')
             .setDescription('Description for the embed')
             .setRequired(true)),
-
-    role: 'Staff',
 
     async execute(interaction) {
 

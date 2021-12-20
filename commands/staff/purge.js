@@ -11,7 +11,6 @@ module.exports = {
             .setRequired(true)
         ),
 
-    role: 'Staff',
     async execute(interaction) {
             
             const number = interaction.options.getInteger('number');

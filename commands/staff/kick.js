@@ -17,7 +17,6 @@ module.exports = {
             .setRequired(false)
         ),
 
-    role: 'Staff',
     async execute(interaction) {
 
         const user = interaction.options.getUser('member');

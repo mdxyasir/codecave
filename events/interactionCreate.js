@@ -5,9 +5,11 @@ const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
 
 client.commands = new Collection();
 client.buttons = new Collection();
+client.menus = new Collection();
 
 const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
 const buttonFiles = fs.readdirSync('./buttons').filter(file => file.endsWith('.js'));
+const menuFiles = fs.readdirSync('./menus').filter(file => file.endsWith('.js'));
 
 const staffFiles = fs.readdirSync(`./commands/staff`).filter(file => file.endsWith('.js'));
 
@@ -24,6 +26,11 @@ for (const file of staffFiles) {
 for (const file of buttonFiles) {
 	const button = require(`../buttons/${file}`);
 	client.buttons.set(button.name, button);
+}
+
+for (const file of menuFiles) {
+	const menu = require(`../menus/${file}`);
+	client.menus.set(menu.name, menu);
 }
 
 module.exports = {
@@ -47,6 +54,11 @@ module.exports = {
             
             const button = client.buttons.get(interaction.customId)
             await button.execute(interaction);
+
+        } else if (interaction.isSelectMenu()) {
+
+            const menu = client.menus.get(interaction.customId)
+            await menu.execute(interaction);
 
         }
     }

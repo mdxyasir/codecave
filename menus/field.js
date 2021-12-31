@@ -4,6 +4,7 @@ module.exports = {
 
         const roles = [
             '925873434762809365', // Web Development
+            '926227367511339118', // Bot Development
             '925873515910025276', // Game Development
             '925873549875494912', // Mobile App Development
             '925873580976246885', // Cyber Security

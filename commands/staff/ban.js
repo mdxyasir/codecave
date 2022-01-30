@@ -20,7 +20,7 @@ module.exports = {
     async execute(interaction) {
 
         const user = interaction.options.getUser('member');
-        const reason = interaction.options.get('reason');
+        const reason = interaction.options.get('reason') || 'No reason provided';
         const member = await interaction.guild.members.cache.get(user.id) || await interaction.guild.members.fetch(user.id);
 
         if (!member.bannable) { return interaction.reply({ content: 'I cannot ban this member', ephemeral: true }) }

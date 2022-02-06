@@ -20,9 +20,11 @@ module.exports = {
         const title = interaction.options.get('title');
         const description = interaction.options.get('description');
 
+        var newDescription = description.value.replace('{n}', '\n');
+
         const embed = new MessageEmbed()
             .setTitle(title.value)
-            .setDescription(description.value)
+            .setDescription(newDescription)
         
         interaction.reply({ content: 'Embed sent!', ephemeral: true });
         interaction.channel.send({ embeds: [embed] });

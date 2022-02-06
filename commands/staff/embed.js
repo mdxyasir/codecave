@@ -20,7 +20,7 @@ module.exports = {
         const title = interaction.options.get('title');
         const description = interaction.options.get('description');
 
-        var newDescription = description.value.replace('{n}', '\n');
+        var newDescription = description.value.replaceAll('{n}', '\n');
 
         const embed = new MessageEmbed()
             .setTitle(title.value)

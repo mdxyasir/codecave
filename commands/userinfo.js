@@ -27,7 +27,7 @@ module.exports = {
                 { name: 'Joined', value: days[member.joinedAt.getDay()] + ", " + months[member.joinedAt.getMonth()] + " " + member.joinedAt.getDate() + ", " + member.joinedAt.getFullYear(), inline: true },
                 { name: 'Joined', value: days[member.user.createdAt.getDay()] + ", " + months[member.user.createdAt.getMonth()] + " " + member.user.createdAt.getDate() + ", " + member.user.createdAt.getFullYear(), inline: true },
                 { name: 'Roles', value: member.roles.cache.map(role => role.name).join(', '), inline: false },  
-                { name: 'Avatar URL', value: `[Click Here](${member.user.displayAvatarURL()})`, inline: true }
+                { name: 'Avatar URL', value: `[Click Here](${member.user.displayAvatarURL({ format: 'png', dynamic: true })})`, inline: true }
             )
 
         await interaction.reply({ embeds: [embed] });

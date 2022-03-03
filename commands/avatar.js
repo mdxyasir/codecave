@@ -4,10 +4,10 @@ const { MessageEmbed } = require('discord.js');
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('avatar')
-        .setDescription('Get information about a user')
+        .setDescription('Get the avatar of a user')
 
         .addUserOption(option => option.setName('member')
-            .setDescription('The user to get information about')
+            .setDescription('The user to get the avatar of')
             .setRequired(true)
         ),
 

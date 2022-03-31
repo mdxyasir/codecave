@@ -10,7 +10,7 @@ module.exports = {
 
         const embed = new MessageEmbed()
             .setColor('#db4335')
-            .setAuthor("Code Cave", member.guild.iconURL())
+            .setAuthor({ name: "Code Cave", iconURL: member.guild.iconURL() })
             .setDescription(`**${member.user.username}#${member.user.discriminator}** has left the server`)
 
         channel.send({

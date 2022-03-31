@@ -37,9 +37,9 @@ module.exports = {
             .setDescription(`**Title:** ${title}`)
 
             .setColor('#35db80')
-            .setAuthor(interaction.user.tag, interaction.user.avatarURL())
+            .setAuthor({ name: interaction.user.tag, iconURL: interaction.user.avatarURL() })
             .setThumbnail(interaction.user.avatarURL()) 
-            .setFooter('To create a new request, use the /request command')
+            .setFooter({ text: 'To create a new request, use the /request command' })
 
             .addFields(
                 { name: '**Description**', value: description },

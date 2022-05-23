@@ -34,7 +34,6 @@ module.exports = {
             .setDescription(`**${member.user.tag}** has been kicked from the server`)
 
         await interaction.reply({ embeds: [embed] });
-        console.log(reason)
 
         member.kick(reason);
     

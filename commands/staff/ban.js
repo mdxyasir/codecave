@@ -35,7 +35,7 @@ module.exports = {
 
         await interaction.reply({ embeds: [embed] });
 
-        member.ban({ reason: reason });
+        member.ban(reason);
     
     }
 }

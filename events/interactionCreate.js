@@ -7,12 +7,16 @@ const client = new Client({ intents: [GatewayIntentBits.Guilds] });
 
 client.commands = new Collection();
 client.buttons = new Collection();
+client.menus = new Collection();
 
 const commandsPath = path.join(__dirname, '../commands');
 const commandFiles = fs.readdirSync(commandsPath).filter(file => file.endsWith('.js'));
 
 const buttonsPath = path.join(__dirname, '../buttons');
 const buttonFiles = fs.readdirSync(buttonsPath).filter(file => file.endsWith('.js'));
+
+const menusPath = path.join(__dirname, '../menus');
+const menuFiles = fs.readdirSync(menusPath).filter(file => file.endsWith('.js'));
 
 for (const file of commandFiles) {
     const filePath = path.join(commandsPath, file);
@@ -26,6 +30,13 @@ for (const file of buttonFiles) {
     const button = require(filePath);
 
     client.buttons.set(button.name, button);
+}
+
+for (const file of menuFiles) {
+    const filePath = path.join(menusPath, file);
+    const menu = require(filePath);
+
+    client.menus.set(menu.name, menu);
 }
 
 module.exports = {
@@ -47,8 +58,17 @@ module.exports = {
 
         } else if (interaction.isButton()) {
 
-            const button = client.buttons.get(interaction.customId);
+            if (interaction.customId.endsWith('.role')) { var customId = 'role' } else { var customId = interaction.customId }
+
+            const button = client.buttons.get(customId);
             await button.execute(interaction);
+
+        } else if (interaction.isSelectMenu()) {
+
+            if (interaction.customId.endsWith('.role')) { var customId = 'role' } else { var customId = interaction.customId }
+
+            const menu = client.menus.get(customId);
+            await menu.execute(interaction);
 
         }
     }

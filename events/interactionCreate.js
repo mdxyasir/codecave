@@ -8,6 +8,7 @@ const client = new Client({ intents: [GatewayIntentBits.Guilds] });
 client.commands = new Collection();
 client.buttons = new Collection();
 client.menus = new Collection();
+client.modals = new Collection();
 
 const commandsPath = path.join(__dirname, '../commands');
 const commandFiles = fs.readdirSync(commandsPath).filter(file => file.endsWith('.js'));
@@ -17,6 +18,9 @@ const buttonFiles = fs.readdirSync(buttonsPath).filter(file => file.endsWith('.j
 
 const menusPath = path.join(__dirname, '../menus');
 const menuFiles = fs.readdirSync(menusPath).filter(file => file.endsWith('.js'));
+
+const modalsPath = path.join(__dirname, '../modals');
+const modalFiles = fs.readdirSync(modalsPath).filter(file => file.endsWith('.js'));
 
 for (const file of commandFiles) {
     const filePath = path.join(commandsPath, file);
@@ -39,11 +43,18 @@ for (const file of menuFiles) {
     client.menus.set(menu.name, menu);
 }
 
+for (const file of modalFiles) {
+    const filePath = path.join(modalsPath, file);
+    const modal = require(filePath);
+
+    client.modals.set(modal.name, modal);
+}
+
 module.exports = {
     name: Events.InteractionCreate,
     async execute(interaction) {
 
-        if (interaction.isCommand()) {
+        if (interaction.isChatInputCommand()) {
 
             const command = client.commands.get(interaction.commandName);
     
@@ -53,7 +64,7 @@ module.exports = {
                 await command.execute(interaction);
             } catch (error) {
                 console.error(error);
-                await interaction.reply({ content: 'There was an error while executing this command!', ephemeral: true });
+                await interaction.reply({ content: 'There was an error. Please report this to staff.', ephemeral: true });
             }
 
         } else if (interaction.isButton()) {
@@ -61,14 +72,37 @@ module.exports = {
             if (interaction.customId.endsWith('.role')) { var customId = 'role' } else { var customId = interaction.customId }
 
             const button = client.buttons.get(customId);
-            await button.execute(interaction);
+
+            try {
+                await button.execute(interaction);
+            } catch (error) {
+                console.error(error);
+                await interaction.reply({ content: 'There was an error. Please report this to staff.', ephemeral: true });
+            }
 
         } else if (interaction.isSelectMenu()) {
 
             if (interaction.customId.endsWith('.role')) { var customId = 'role' } else { var customId = interaction.customId }
 
             const menu = client.menus.get(customId);
-            await menu.execute(interaction);
+
+            try {
+                await menu.execute(interaction);
+            } catch (error) {
+                console.error(error);
+                await interaction.reply({ content: 'There was an error. Please report this to staff.', ephemeral: true });
+            }
+            
+        } else if (interaction.isModalSubmit()) {
+
+            const modal = client.modals.get(interaction.customId);
+
+            try {
+                await modal.execute(interaction);
+            } catch (error) {
+                console.error(error);
+                await interaction.reply({ content: 'There was an error. Please report this to staff.', ephemeral: true });
+            }
 
         }
     }

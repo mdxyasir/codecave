@@ -12,7 +12,7 @@ module.exports = {
             .setAuthor({ name: 'Code Cave', iconURL: member.guild.iconURL() })
             .setDescription(`${member.user} has left the server`)
         
-        await channel.send({ embeds: [embed] })
+        await channel.send({ content: `${member.user}`, embeds: [embed] })
 
     }
 }

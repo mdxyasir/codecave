@@ -21,16 +21,16 @@ client.modals = new Collection();
 const eventsPath = path.join(__dirname, 'events');
 const eventFiles = fs.readdirSync(eventsPath).filter(file => file.endsWith('.js'));
 
-const commandsPath = path.join(__dirname, '../commands');
+const commandsPath = path.join(__dirname, 'commands');
 const commandFiles = fs.readdirSync(commandsPath).filter(file => file.endsWith('.js'));
 
-const buttonsPath = path.join(__dirname, '../buttons');
+const buttonsPath = path.join(__dirname, 'buttons');
 const buttonFiles = fs.readdirSync(buttonsPath).filter(file => file.endsWith('.js'));
 
-const menusPath = path.join(__dirname, '../menus');
+const menusPath = path.join(__dirname, 'menus');
 const menuFiles = fs.readdirSync(menusPath).filter(file => file.endsWith('.js'));
 
-const modalsPath = path.join(__dirname, '../modals');
+const modalsPath = path.join(__dirname, 'modals');
 const modalFiles = fs.readdirSync(modalsPath).filter(file => file.endsWith('.js'));
 
 for (const file of eventFiles) {

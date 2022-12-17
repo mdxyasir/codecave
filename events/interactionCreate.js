@@ -23,6 +23,8 @@ module.exports = {
 
             const button = interaction.client.buttons.get(customId);
 
+            if (!button) return;
+
             try {
                 await button.execute(interaction);
             } catch (error) {
@@ -36,6 +38,8 @@ module.exports = {
 
             const menu = interaction.client.menus.get(customId);
 
+            if (!menu) return;
+
             try {
                 await menu.execute(interaction);
             } catch (error) {
@@ -45,7 +49,9 @@ module.exports = {
             
         } else if (interaction.isModalSubmit()) {
 
-            const modal = client.modals.get(interaction.customId);
+            const modal = interaction.client.modals.get(interaction.customId);
+
+            if (!modal) return;
 
             try {
                 await modal.execute(interaction);

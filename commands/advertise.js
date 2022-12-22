@@ -5,7 +5,6 @@ module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('advertise')
 		.setDescription('Create a new ad'),
-    cooldown: 86400,
 	async execute(interaction) {
 
         const modal = new ModalBuilder()

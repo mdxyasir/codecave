@@ -5,7 +5,6 @@ module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('request')
 		.setDescription('Create a new request'),
-    cooldown: 86400,
 	async execute(interaction) {
 
         const modal = new ModalBuilder()

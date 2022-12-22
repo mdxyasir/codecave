@@ -18,6 +18,9 @@ client.buttons = new Collection();
 client.menus = new Collection();
 client.modals = new Collection();
 
+client.commandCooldowns = new Collection();
+client.buttonCooldowns = new Collection();
+
 const eventsPath = path.join(__dirname, 'events');
 const eventFiles = fs.readdirSync(eventsPath).filter(file => file.endsWith('.js'));
 

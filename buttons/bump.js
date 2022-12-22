@@ -1,5 +1,6 @@
 module.exports = {
     name: 'bump',
+    cooldown: 86400,
     async execute(interaction) {
 
         user = interaction.message.embeds[0].footer.text;
